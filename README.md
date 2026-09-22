@@ -1,4 +1,3 @@
 # arcanalyzer
 # authors
-Eric
-Mason
+Seyar, Eric, Russell Nguyen, Mason
