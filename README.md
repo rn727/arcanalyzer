@@ -1,3 +1,3 @@
 # arcanalyzer
 # authors
-Eric, Russell Nguyen
+Seyar, Eric, Russell Nguyen
