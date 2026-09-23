@@ -16,4 +16,4 @@ ArcAnalyzer is a web application designed to help users find reviews and ratings
 # Project Goal
 The goal of ArcAnalyzer is to give viewers a more specific way to find information about the parts of a TV show they are interested in. By focusing on individual story arcs, users can see what other viewers thought about a particular part of a show before deciding whether to watch it.
 
-AI Disclosure: Used chatGPT solely for research purposes, specifically for guidelines on what a README requires.
+AI Disclosure: Used ChatGPT solely for research purposes, specifically for guidelines on what a README requires.
