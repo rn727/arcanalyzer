@@ -1,7 +1,4 @@
 
-
-import "./Form.css";
-
 const Form = () => {
     return <form> 
     <div className= 'form-group'>
