@@ -7,7 +7,9 @@ authors = [
     { name = "rn727", email = "227737184+rn727@users.noreply.github.com" }
 ]
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "fastapi[server]>=0.141.1",
+]
 
 [project.scripts]
 server = "server:main"
