@@ -1,6 +1,8 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+import os
+import pickle
 
 app = FastAPI()
 
@@ -21,7 +23,9 @@ class Arc(BaseModel):
     avgRating: float
     reviews: list[Review]
 
-db_arcs = {
+
+
+default_db_arcs = {
     "rentarcinfinity": Arc(
         name="RAG Arc 893049013",
         avgRating=0,
@@ -33,6 +37,15 @@ db_arcs = {
         reviews=[Review(rating=10, text="unbelievable.")]
     )
 }
+if os.path.exists('arcdb.pkl'):
+    with open('arcdb.pkl', "rb") as f:
+        db_arcs = pickle.load(f)
+else:
+    db_arcs = default_db_arcs
+
+def save_db():
+    with open('arcdb.pkl', "wb") as f:
+        pickle.dump(db_arcs, f)
 
 PATH_PREFIX=""
 
@@ -61,5 +74,22 @@ async def addArc(arc_name: str, name: str = "Unnamed Arc", rating: int = 10, rev
     arc.avgRating = (current_sum + rating) / total_reviews
 
     arc.reviews.append(review)
-
+    save_db()
     return arc
+
+@app.post(PATH_PREFIX+"/rate/{arc_name}")
+async def addRating(arc_name: str, rating: int = 10):
+    key = arc_name.lower()
+    if key not in db_arcs:
+        raise HTTPException(status_code=404, detail="Arc not found")
+
+    arc = db_arcs[key]
+
+    #update average rating
+    total_reviews = len(arc.reviews) + 1
+    current_sum = arc.avgRating * len(arc.reviews)
+    arc.avgRating = (current_sum + rating) / total_reviews
+    arc.reviews.append(Review(rating=rating, text=""))
+    save_db()
+    return arc
+
