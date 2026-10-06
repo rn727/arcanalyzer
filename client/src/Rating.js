@@ -12,4 +12,7 @@ export default class Rating {
 //This will display the infrmation above
 displayRating() { // +public
 }
+//This will allow the website workers to review the comment
+reviewComment() { // +public
+}
 }
