@@ -5,13 +5,7 @@ class Show:
     showId : int
     title : str
     description : str
-    seasons : List[Season]
     storyArcs : List[StoryArc]
-
-class Season:
-    seasonId : int
-    seasonNumber : int
-    episodes : List[Episode]
 
 class StoryArc:
     arcId : int
