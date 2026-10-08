@@ -15,11 +15,17 @@ export default class Review {
         
         //This will keep records of date and time review are created
         this.createdAt = new Date();
+
+        this.isRemoved = false;
     }
     //this method is going to return the text of the review
     getText() {
 
     }
+    getReviewId() {
+        
+    }
+    
     //This method will retun rating
     getRating() {
 
@@ -27,5 +33,11 @@ export default class Review {
     //This method will return the date and time
     getCreatedAt() {
     }
-    
+    getIsRemoved() {
+        return this.isRemoved;
+    }
+
+    markRemoved() {
+        this.isRemoved = true;
+    }
 }
