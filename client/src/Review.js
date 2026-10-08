@@ -16,7 +16,7 @@ export default class Review {
         //This will keep records of date and time review are created
         this.createdAt = new Date();
 
-        this.isRemoved = false;
+        this.isFlagged = false;
     }
     //this method is going to return the text of the review
     getText() {
@@ -33,11 +33,13 @@ export default class Review {
     //This method will return the date and time
     getCreatedAt() {
     }
-    getIsRemoved() {
-        return this.isRemoved;
+    //this method will see if what is asked is true to be flagged
+    getIsFlagged() {
+        return this.isFlagged;
     }
-
-    markRemoved() {
-        this.isRemoved = true;
+     //This method will mark as flagged
+     //This will be flagged for viwers to see but will be storerd 
+    markFlagged() {
+        this.isFlagged = true;
     }
 }

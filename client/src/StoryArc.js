@@ -35,11 +35,13 @@ export default class StoryArc {
     getReviews() {
     
     }
+    //This method will remove a review from the story arc based on its ID.
     removeReview(reviewId){
     if (reviewId === null) {
         return;
     }
     }
+    //This method will get the episodes of the story arc
     getEpisodes() {
     }
 }
