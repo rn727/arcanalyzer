@@ -1,3 +1,5 @@
+# Note: Do not import this
+raise Exception('Deprecated, please import the individual class in its own individual file')
 from datetime import date, datetime, time
 from pydantic import BaseModel,Field
 
