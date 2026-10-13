@@ -58,25 +58,6 @@ async def getArc(arc_name: str):
 
     return db_arcs[key]
 
-@app.get(PATH_PREFIX+"/addReview/{arc_name}")
-async def addArc(arc_name: str, name: str = "Unnamed Arc", rating: int = 10, reviewText: str = ""):
-    key = arc_name.lower()
-    if key not in db_arcs:
-        raise HTTPException(status_code=404, detail="Arc not found")
-
-    arc = db_arcs[key]
-
-    review = Review(rating=rating,text=reviewText)
-
-    #update average rating
-    total_reviews = len(arc.reviews) + 1
-    current_sum = arc.avgRating * len(arc.reviews)
-    arc.avgRating = (current_sum + rating) / total_reviews
-
-    arc.reviews.append(review)
-    save_db()
-    return arc
-
 @app.post(PATH_PREFIX+"/rate/{arc_name}")
 async def addRating(arc_name: str, rating: int = 10):
     key = arc_name.lower()
