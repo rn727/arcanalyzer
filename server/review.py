@@ -1,26 +1,12 @@
+from datetime import date, datetime, time
+from pydantic import BaseModel,Field
+
 class Review:
-
-    def __init__(self, reviewId, text, rating, created, flagged):
-        self._reviewId = reviewId
-        self._text = text
-        self._rating = rating
-        self._created = created
-        self._flagged = flagged
-
-    def getReviewId(self):
-        return self._reviewId
-
-    def getText(self):
-        return self._text
-
-    def getRating(self):
-        return self._rating
-
-    def getCreated(self):
-        return self._created
-
-    def isFlagged(self):
-        return self._flagged
+    reviewId : int
+    test : str
+    rating : int
+    created : datetime = Field(default_factory=datetime.now)
+    flagged : bool
 
     def remove(self):
         # void method that will interact with Report class later on
