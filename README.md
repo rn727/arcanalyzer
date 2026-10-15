@@ -22,7 +22,7 @@ ArcAnalyzer is a web application designed to help users find reviews and ratings
 
 - Frontend: JavaScript, Vite, React
 - Backend: Python, FastAPI
-- Database: SQLite
+- Database: Pickle
 - Testing: Pytest
 
 ## Project Goal
@@ -108,11 +108,18 @@ uv --version
 
 ### Other Useful Commands
 
-You can run tests using pytest through this command. We will assume you are at the project root.
+You can run tests for the backend using pytest through this command. We will assume you are at the project root.
 
 ```bash
 cd server
 uv run python -m pytest tests
+```
+
+You can also run tests for the frontend using vitest through this command, assuming you are at root
+
+```bash
+cd client
+npm test
 ```
   
 AI Disclosure: Used ChatGPT to help learn how to make a README, as well as learn how to use the different technologies within the stack by generating explanations, examples, and generics that were then finetuned to fit our project.
