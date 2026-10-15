@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState} from "react";
 
 const Form = () => {
   const [rating, setRating] = useState(null); //changed to null*
@@ -8,8 +8,33 @@ const Form = () => {
   const[reportReason, setReportReason] = useState("");
   const[reportMessage, setReportMessage] = useState("");
   const[submittedReview, setSubmittedReview] = useState(null);
-
+  const[reviews, setReviews] = useState([]);
+ 
   const selectedSeason = {episodeStart: 1, episodeEnd: 12};// not set just example
+  useEffect(() => {
+    //This will ask the backend for the reviews and show them on the page
+    async function loadReviews() {
+      try {
+        //This will be an example
+        const response = await fetch("http://127.0.0.1:8000/arc/yourname");
+        //This will stop if the back end gets an error
+        if (!response.ok) {
+          console.error("Was not able to load reviews:", response.statusText);
+          return;
+        }
+        //Will help convert the backend into an something that can be displayed
+        const arc = await response.json();
+        //will store the reviews so that it can be displayed
+        setReviews(arc.reviews);
+      } catch (error) {
+        //this will run if the backend is not reached
+        console.error("Not able to reach the backend:", error);
+      }
+      }
+      //runs the function to load reviews
+      loadReviews();
+  }, []); //This will run as soon as the page appears 
+
 
   //not above 
 
@@ -79,10 +104,12 @@ const Form = () => {
         
 
       {/* the reveiw text is gonna be here. */}
-      <p>Review comment goes here ex: This arc is good.</p>
-
-      {/*the review will score it form zero to ten */}
-      <strong> 5/10</strong>
+      {reviews.map((review, index) => (
+        <div key={index}>
+          <p>{review.text}</p>
+          <strong>{review.rating}/10</strong>
+        </div>
+      ))}
       <button
       type="button"
       onClick={() => {
