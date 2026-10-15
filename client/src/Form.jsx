@@ -5,6 +5,7 @@ const Form = () => {
   const [showReviewForm, setShowReviewForm] = useState(false);//
   const [comment, setComment] = useState("");//
   const[showReportForm, setShowReportForm] = useState(false);
+  const[reportReviewIndex, setReportReviewIndex] = useState(null);// will have each comment have a report next to them
   const[reportReason, setReportReason] = useState("");
   const[reportMessage, setReportMessage] = useState("");
   const[submittedReview, setSubmittedReview] = useState(null);
@@ -16,7 +17,7 @@ const Form = () => {
     async function loadReviews() {
       try {
         //This will be an example
-        const response = await fetch("http://127.0.0.1:8000/arc/yourname");
+        const response = await fetch("http://127.0.0.1:8000/arc/yourname"); // This here is what is sending the arc reviews to the backend
         //This will stop if the back end gets an error
         if (!response.ok) {
           console.error("Was not able to load reviews:", response.statusText);
@@ -108,20 +109,23 @@ const Form = () => {
         <div key={index}>
           <p>{review.text}</p>
           <strong>{review.rating}/10</strong>
+          <button
+          type="button"
+          onClick={() => {
+            setReportReviewIndex(index);
+            setShowReportForm(true);
+            setReportMessage("");
+          }}
+          >
+            Report
+          </button>
         </div>
       ))}
-      <button
-      type="button"
-      onClick={() => {
-        setShowReportForm(true)
-        setReportMessage("")
-      }}
-      >
-        report
-      </button>
+
       {/*this will be the box after the button is clicked */}
       {showReportForm &&(
         <div className="report-form">
+          <p>Reporting: {reviews[reportReviewIndex]?.text}</p> {/*as it has no fucntion for right now the other team can build off it */}
           <label htmlFor="report-reason">What is the reason for this report?</label>
           <textarea
           id="report-reason"
@@ -141,15 +145,27 @@ const Form = () => {
           }
         }}
          >
+          {/* allows to cancel the report */}
          Submit Report
+         </button>
+         <button
+          type="button"
+          onClick={() => {
+            setShowReportForm(false);
+            setReportReason("");
+            setReportMessage("");
+            setReportReviewIndex(null);
+          }}
+         >
+          Cancel
          </button>
          </div>
          )}
          {/* will show the submission message. */}
          {reportMessage &&( 
          <p role="status">{reportMessage}</p>
-      
          )}
+         </article>
 
 
 
@@ -190,6 +206,13 @@ const Form = () => {
     required
     />
     <button type="submit">Submit Review</button> {/* will be the to submit the review */}
+    <button type="button" onClick={() => {
+      setShowReviewForm(false);
+      setComment("");
+      setRating(null);
+    }}>
+      Cancel
+    </button>
     </div>
       )}
 
@@ -200,7 +223,7 @@ const Form = () => {
           <strong>{submittedReview.rating}/10</strong>
         </div>
       )}
-      </article>
+      
     
       </section> 
       </div>
