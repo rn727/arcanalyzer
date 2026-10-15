@@ -1,43 +1,65 @@
-import { useState } from "react";
+import { useEffect, useState} from "react";
 
 const Form = () => {
   const [rating, setRating] = useState(null); //changed to null*
   const [showReviewForm, setShowReviewForm] = useState(false);//
   const [comment, setComment] = useState("");//
   const[showReportForm, setShowReportForm] = useState(false);
+  const[reportReviewIndex, setReportReviewIndex] = useState(null);// will have each comment have a report next to them
   const[reportReason, setReportReason] = useState("");
   const[reportMessage, setReportMessage] = useState("");
-  const[submittedReview, setSubmittedReview] = useState(null);
-
+  const[reviews, setReviews] = useState([]);
+ 
   const selectedSeason = {episodeStart: 1, episodeEnd: 12};// not set just example
+  useEffect(() => {
+    //This will ask the backend for the reviews and show them on the page
+    async function loadReviews() {
+      try {
+        //This will be an example
+        const response = await fetch("http://127.0.0.1:8000/arc/yourname"); // This here is what is sending the arc reviews to the backend
+        //This will stop if the back end gets an error
+        if (!response.ok) {
+          console.error("Was not able to load reviews:", response.statusText);
+          return;
+        }
+        //Will help convert the backend into an something that can be displayed
+        const arc = await response.json();
+        //will store the reviews so that it can be displayed
+        setReviews(arc.reviews);
+      } catch (error) {
+        //this will run if the backend is not reached
+        console.error("Not able to reach the backend:", error);
+      }
+      }
+      //runs the function to load reviews
+      loadReviews();
+  }, []); //This will run as soon as the page appears 
+
 
   //not above 
 
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const newReview = {
-      comment: comment, 
-      rating: rating,
-    };
-
-    const response = await fetch("http://127.0.0.1:8000/rate/yourname", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        arc_name: "yourname",
-        comment: comment,
-        rating: rating,
-      })
+    const params = new URLSearchParams({
+      rating: String(rating),
+      text: comment,
     });
+
+    const response = await fetch(
+      "http://127.0.0.1:8000/rate/yourname?" + params.toString(),
+      {method: "POST"}
+    );
+    if (!response.ok) {
+      console.error("Review submission failed:", response.statusText);
+      return;
+    }
 
     const data = await response.json();
 
     console.log(data);
 
-    setSubmittedReview(newReview);
+    setReviews(data.reviews);
     setComment("");
     setRating(null);
     setShowReviewForm(false);
@@ -73,26 +95,31 @@ const Form = () => {
       </h3>
 
       {/* Groups of the episdoe ranges in the seasons. */}
-      <article className="review-card"> 
+      <article> 
         
 
       {/* the reveiw text is gonna be here. */}
-      <p>Review comment goes here ex: This arc is good.</p>
+      {reviews.map((review, index) => (
+        <div key={index} className="review-card">
+          <p>{review.text}</p>
+          <strong>{review.rating}/10</strong>
+          <button
+          type="button"
+          onClick={() => {
+            setReportReviewIndex(index);
+            setShowReportForm(true);
+            setReportMessage("");
+          }}
+          >
+            Report
+          </button>
+        </div>
+      ))}
 
-      {/*the review will score it form zero to ten */}
-      <strong> 5/10</strong>
-      <button
-      type="button"
-      onClick={() => {
-        setShowReportForm(true)
-        setReportMessage("")
-      }}
-      >
-        report
-      </button>
       {/*this will be the box after the button is clicked */}
       {showReportForm &&(
         <div className="report-form">
+          <p>Reporting: {reviews[reportReviewIndex]?.text}</p> {/*as it has no fucntion for right now the other team can build off it */}
           <label htmlFor="report-reason">What is the reason for this report?</label>
           <textarea
           id="report-reason"
@@ -112,15 +139,27 @@ const Form = () => {
           }
         }}
          >
+          {/* allows to cancel the report */}
          Submit Report
+         </button>
+         <button
+          type="button"
+          onClick={() => {
+            setShowReportForm(false);
+            setReportReason("");
+            setReportMessage("");
+            setReportReviewIndex(null);
+          }}
+         >
+          Cancel
          </button>
          </div>
          )}
          {/* will show the submission message. */}
          {reportMessage &&( 
          <p role="status">{reportMessage}</p>
-      
          )}
+         </article>
 
 
 
@@ -161,17 +200,17 @@ const Form = () => {
     required
     />
     <button type="submit">Submit Review</button> {/* will be the to submit the review */}
+    <button type="button" onClick={() => {
+      setShowReviewForm(false);
+      setComment("");
+      setRating(null);
+    }}>
+      Cancel
+    </button>
     </div>
       )}
 
-      {/* will show the submitted review */}
-      {submittedReview && (
-        <div className="review-card">
-          <p>{submittedReview.comment}</p>
-          <strong>{submittedReview.rating}/10</strong>
-        </div>
-      )}
-      </article>
+      
     
       </section> 
       </div>
