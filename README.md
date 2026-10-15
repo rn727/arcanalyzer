@@ -15,7 +15,7 @@ ArcAnalyzer is a web application designed to help users find reviews and ratings
 - View story arcs within a TV show
 - Read reviews for specific story arcs
 - Post reviews anonymously or under a pseudonym
-- Rate episodes on a scale from 1 to 5
+- Rate episodes on a scale from 0 to 10
 - Report inappropriate reviews
 
 ## Tech Stack
