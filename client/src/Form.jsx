@@ -21,17 +21,19 @@ const Form = () => {
       rating: rating,
     };
 
-    const response = await fetch("http://127.0.0.1:8000/rate/yourname", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        arc_name: "yourname",
-        comment: comment,
-        rating: rating,
-      })
+    const params = new URLSearchParams({
+      rating: String(rating),
+      text: comment,
     });
+
+    const response = await fetch(
+      "http://127.0.0.1:8000/rate/yourname?" + params.toString(),
+      {method: "POST"}
+    );
+    if (!response.ok) {
+      console.error("Review submission failed:", response.statusText);
+      return;
+    }
 
     const data = await response.json();
 
