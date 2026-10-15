@@ -8,7 +8,6 @@ const Form = () => {
   const[reportReviewIndex, setReportReviewIndex] = useState(null);// will have each comment have a report next to them
   const[reportReason, setReportReason] = useState("");
   const[reportMessage, setReportMessage] = useState("");
-  const[submittedReview, setSubmittedReview] = useState(null);
   const[reviews, setReviews] = useState([]);
  
   const selectedSeason = {episodeStart: 1, episodeEnd: 12};// not set just example
@@ -42,11 +41,6 @@ const Form = () => {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    const newReview = {
-      comment: comment, 
-      rating: rating,
-    };
-
     const params = new URLSearchParams({
       rating: String(rating),
       text: comment,
@@ -65,7 +59,7 @@ const Form = () => {
 
     console.log(data);
 
-    setSubmittedReview(newReview);
+    setReviews(data.reviews);
     setComment("");
     setRating(null);
     setShowReviewForm(false);
@@ -101,12 +95,12 @@ const Form = () => {
       </h3>
 
       {/* Groups of the episdoe ranges in the seasons. */}
-      <article className="review-card"> 
+      <article> 
         
 
       {/* the reveiw text is gonna be here. */}
       {reviews.map((review, index) => (
-        <div key={index}>
+        <div key={index} className="review-card">
           <p>{review.text}</p>
           <strong>{review.rating}/10</strong>
           <button
@@ -216,13 +210,6 @@ const Form = () => {
     </div>
       )}
 
-      {/* will show the submitted review */}
-      {submittedReview && (
-        <div className="review-card">
-          <p>{submittedReview.comment}</p>
-          <strong>{submittedReview.rating}/10</strong>
-        </div>
-      )}
       
     
       </section> 
