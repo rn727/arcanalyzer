@@ -57,3 +57,21 @@ ArcAnalyzer lets television enthusiasts rate and review specific groups of episo
 2. **Intent + Design:** Why use a pickle file as a temp backend? Was there a specific reason? What was the intent and advantage of using this method over something like Supabase?
 
 3. **Intent:** How did you originally plan on implementing shows and the arcs of the shows themselves into the website UI?
+
+## Candidate Requirements - Sidharth && Karan
+
+| ID | Candidate requirement | Type | Source | Status | Acceptance criterion |
+|---|---|---|---|---|---|
+| CR-1 | The system shall allow a user to submit a rating and review text for a named arc. | Functional | client/src/Form.jsx, handleSubmit(); server/main.py, addRating() | Confirmed | A valid rating is saved in the backend |
+| CR-2 | The system shall allow a user to submit a textual review for a named arc. | Functional | client/src/Form.jsx, handleSubmit(); server/main.py, addRating() | Confirmed | A valid review consisting of appropriate text is saved in the backend and displayed on the frontend for other users to see. |
+| CR-3 | The system shall not allow reviews past a certain text limit to be saved in the backend. | Non-functional | Code does not perform this function yet, according to the handoff | Unconfirmed | The submit button for the review is disabled. |
+| CR-4 | The system shall be able to receive a report of a comment. | Non-functional | server/report.py | Unconfirmed | There is an existing report button on every frontend/backend populating review on a given arc, and a valid report will populate the backend on the project side. |
+| CR-5 | The system shall possess the functionality of allowing deletion of existing reviews. | Non-functional | server/review.py | Unconfirmed | Once a report is sent to the backend by a user, or a review is considered inappropriate by the project owners, deletion of that review should be possible from the admin side. |
+
+## Unit Test Cases - Sidharth && Karan
+
+| ID | Requirement | Kind | Input | Expected Output | Predicted Result Today |
+|---|---|---|---|---|---|
+| TC-1 | CR-1 | Positive | Arc “yourname”, rating 5, and text “Arc Example” | Review is added and updated arc is returned | Pass |
+| TC-2 | CR-3 | Negative, boundary | `{ review: X+1 characters> }`<br><br>X is the TBD char limit | Review is false and not passed to backend | Fail: no length check exists yet |
+| TC-3 | CR-3 | Boundary | `{ review: <X characters> }`<br><br>X is the TBD char limit | Review is valid and populates frontend and backend | Fail: no such message/char limit mentioned in handoff |
