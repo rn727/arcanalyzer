@@ -99,24 +99,25 @@ RULES
 
 ---
 
-## Section: [Your Area] ([Your Name])
+## Section: Review Reporting and Backend Display (Sidharth Nair)
 
 ### Stakeholder Goals
 
 | ID | Stakeholder | Goal |
 |---|---|---|
-| | | |
+| G-SN-01 | Viewer | A viewer should be able to report an inappropriate review and trust that the report identifies the intended review and reaches the system for moderation. |
+| G-SN-02 | Moderator | A moderator should be able to act on inappropriate reviews so that reported content can be removed when necessary. |
 
 ### Functional Requirements
 
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
+| REQ-SN-01 | When a viewer submits a non-empty report reason for a review, the system shall send the selected review and report reason to the backend and make the report available for moderation. | Suspected bug (GitHub Issue #89) | CR-4: The system shall be able to receive a report of a comment. |
+| REQ-SN-02 | When a viewer clicks the Report button beside a review, the system shall open a report form that clearly identifies the selected review before the report is submitted. | Confirmed | New |
+| REQ-SN-03 | The system shall allow an inappropriate existing review to be removed by a moderator after it has been identified for moderation. | Suspected bug (GitHub Issue #33) | CR-5: The system shall possess the functionality of allowing deletion of existing reviews. |
 
 ### Non-Functional Requirements
 
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
-| | | | |
+| NFR-SN-01 | User-provided text entered into the report reason field shall be treated as text and shall not execute user-provided scripts or code in the browser. | Confirmed | New |
