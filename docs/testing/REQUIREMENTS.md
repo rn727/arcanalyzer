@@ -1,5 +1,4 @@
 # Testable Requirements: ArcAnalyzer
-=======
 
 
 **Team number:** [2]
