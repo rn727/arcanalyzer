@@ -78,27 +78,27 @@ RULES
 
 ---
 
-## Section: [Your Area] ([Your Name])
+## Section: Review Submission and Input Validation (Karan Hooda)
 
 ### Stakeholder Goals
 
 | ID | Stakeholder | Goal |
 |---|---|---|
-| | | |
+| G-KH-01 | ArcAnalyzer viewers | As a viewer, I want to submit a numerical rating and written review for a story arc and see my review appear on its page, so I can share my opinion with other viewers. |
 
 ### Functional Requirements
 
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
+| REQ-KH-01 | The system shall accept reviews of up to and including 500 characters and reject any review longer than 500 characters without saving it. | Suspected bug (GitHub Issue #102) | CR-3: The system shall not allow reviews past a certain text limit to be saved in the backend. |
+| REQ-KH-02 | When a user submits a nonempty written review and an integer rating from 0 to 10 for an existing story arc, the system shall save the review and rating to that arc. | Confirmed | CR-1: The system shall allow a user to submit a rating and review text for a named arc. |
+| REQ-KH-03 | After a successful review submission, the system shall display the submitted review text and rating in the arc's review list without requiring a page refresh. | Confirmed | CR-2: The system shall allow a user to submit a textual review for a named arc. |
 
 ### Non-Functional Requirements
 
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
-| | | | |
+| NFR-KH-01 | The written-review textarea and numerical-rating input shall each have a programmatically associated text label so users and automated accessibility tools can identify both fields by their labels. | Confirmed | New |
 
 ---
 
