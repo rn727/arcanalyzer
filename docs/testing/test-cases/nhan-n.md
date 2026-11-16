@@ -1,4 +1,4 @@
-# Test Cases: [Nhan N]
+# Test Cases: Nhan Nguyen
 
 **Team number:** [2]
 **My area:** [from REQUIREMENTS.md]
