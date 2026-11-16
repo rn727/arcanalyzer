@@ -1,7 +1,7 @@
 # Traceability Matrix
 
 **Team number:** [2]
-**Filled in by (captain):** [Nhan, Karan]
+**Filled in by (captain):** [Nhan, Karan, Hamza]
 
 Fill this in **after** everyone's work is merged. One row per requirement.
 
@@ -52,7 +52,7 @@ A Validation finding means the system does what the requirement says, but the re
 
 | Requirement ID | Goal it fails | Why | Issue # |
 |---|---|---|---|
-| | | | |
+| None | None | None | None |
 
 **If you found none,** explain in 2 to 3 sentences why every requirement truly serves its Goal:
 Every requirement met their goals and what was needed of them, the code itself was intended for the viewers correctly but there was errors within the code itself. It wasn't a flaw with the requirements and system as a whole but rather with how the code was written hence it was mainly a verification error.
@@ -62,16 +62,16 @@ Every requirement met their goals and what was needed of them, the code itself w
 
 | | Count |
 |---|---|
-| Part 5 requirements carried over | |
-| New requirements added | |
-| Part 6 tests upgraded (out of 3) | |
-| Total requirements | |
-| Total test cases | |
-| Passed | |
-| Failed | |
-| Issues opened | |
-| Critical issues | |
+| Part 5 requirements carried over | 5 |
+| New requirements added | 5 |
+| Part 6 tests upgraded (out of 3) | 3 |
+| Total requirements | 10 |
+| Total test cases | 13 |
+| Passed | 5 |
+| Failed | 3 |
+| Issues opened | 4 |
+| Critical issues | 0 |
 
 **In one sentence, would you ship this system today? Why or why not?**
-
+No we would not ship system today due to multiple tests failing as well as unresolved issues remaining.
 >
