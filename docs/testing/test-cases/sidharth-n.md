@@ -30,7 +30,7 @@
 **Status:** Fail  
 **Severity:** Major  
 **V or V:** Verification  
-**GitHub Issue:** #89
+**GitHub Issue:** #115
 
 ---
 
@@ -66,7 +66,7 @@
 **From Part 6:** New  
 **Written by:** Sidharth Nair  
 **Title:** Canceling a report returns the application to the normal review state  
-**Traces to:** REQ-SN-02  
+**Traces to:** REQ-SN-02, G-SN-02
 **Test type:** System  
 **Preconditions:** The frontend and backend are running and at least one review is displayed.  
 **Test data:** Existing review text: `unbelievable.`; temporary report reason: `Test report`

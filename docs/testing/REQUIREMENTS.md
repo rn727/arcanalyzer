@@ -102,7 +102,7 @@ RULES
 
 | ID | Stakeholder | Goal |
 |---|---|---|
-| G-SN-01 | Viewer | A viewer should be able to report an inappropriate review and trust that the report identifies the intended review and reaches the system for moderation. |
+| G-SN-02 | Viewer | A viewer should be able to enter and exit the reporting process without accidentally changing or removing the review being reported. |
 | G-SN-02 | Moderator | A moderator should be able to act on inappropriate reviews so that reported content can be removed when necessary. |
 
 ### Functional Requirements
