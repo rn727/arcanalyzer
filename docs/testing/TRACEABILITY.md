@@ -58,25 +58,27 @@ A Validation finding means the system does what the requirement says, but the re
 
 | Requirement ID | Goal it fails | Why | Issue # |
 |---|---|---|---|
-| | | | |
+| None | N/A | No validation failures identified. | N/A |
 
 **If you found none,** explain in 2 to 3 sentences why every requirement truly serves its Goal:
 Every requirement met their goals and what was needed of them, the code itself was intended for the viewers correctly but there was errors within the code itself. It wasn't a flaw with the requirements and system as a whole but rather with how the code was written hence it was mainly a verification error.
->
+
+
 
 ## Summary
 
 | | Count |
 |---|---|
-| Part 5 requirements carried over | |
-| New requirements added | |
-| Part 6 tests upgraded (out of 3) | |
-| Total requirements | |
-| Total test cases | |
-| Passed | |
-| Failed | |
-| Issues opened | |
-| Critical issues | |
+| Part 5 requirements carried over | 8 |
+| New requirements added | 13 |
+| Part 6 tests upgraded (out of 3) | 3 |
+| Total requirements | 21 |
+| Total test cases | 17 |
+| Passed | 12 |
+| Failed | 5 |
+| Issues opened | 5 |
+| Critical issues | 1 |
 
 **In one sentence, would you ship this system today? Why or why not?**
 
+No, I would not ship the system today because five tests failed, including important issues with rating validation, review character limits, and report submissions.
