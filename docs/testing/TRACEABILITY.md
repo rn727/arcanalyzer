@@ -27,15 +27,16 @@ Fill this in **after** everyone's work is merged. One row per requirement.
 | NFR-HA-01 | New | Hamza Akbari | HA-05 | 1 Pass | N/A |
 | G-SN-01 | New | Sidharth Nair | SN-01, SN-04 | 1 Pass, 1 Fail | #89 |
 | REQ-SN-01 | CR-4 | Sidharth Nair | SN-01 | 1 Fail | #89 |
-| REQ-SN-02 | New | Sidharth Nair | SN-03 | 1 Pass | N/A |
-| REQ-SN-03 | New | Sidharth Nair | SN-04 | 1 Pass | N/A |
+| REQ-SN-02 | New | Sidharth Nair | SN-03, SN-04 | 2 Pass | N/A |
+| REQ-SN-03 | CR-5 | Sidharth Nair | None | No test linked | #33 |
 | NFR-SN-01 | New | Sidharth Nair | SN-02 | 1 Pass | N/A |
 
 ## Gaps
 
-List any requirement with no test, any test with no requirement, and any Part 5 requirement or Part 6 test that nobody brought over. Write "None" if there are none.
-
--
+- Requirements with no test: REQ-KH-02, G-SN-02, REQ-SN-03
+- Tests with no requirement: None
+- Part 5 requirements not brought over: None
+- Part 6 tests not brought over: None
 
 ## Test Type Coverage
 
@@ -43,13 +44,13 @@ Put a Test ID next to each type. Team minimum: all 7.
 
 | Test type | Test ID |
 |---|---|
-| Unit |KH-04 |
-| Integration |NN-03, HA-01, HA-05 |
-| System (E2E) | |
-| Acceptance |NN-01, KH-03, HA-04 |
-| Boundary Value |NN-04, KH-01, KH-2, HA-02 |
-| Negative |NN-02, HA-03 |
-| Security | |
+| Unit | KH-04 |
+| Integration | SN-01, NN-03, HA-01, HA-05 |
+| System (E2E) | SN-03 |
+| Acceptance | SN-04, NN-01, KH-03, HA-04 |
+| Boundary Value | NN-04, KH-01, KH-02, HA-02 |
+| Negative | NN-02, HA-03 |
+| Security | SN-02 |
 
 ## Validation Findings
 
@@ -79,4 +80,3 @@ Every requirement met their goals and what was needed of them, the code itself w
 
 **In one sentence, would you ship this system today? Why or why not?**
 
->
