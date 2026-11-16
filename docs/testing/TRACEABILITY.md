@@ -10,16 +10,16 @@ Fill this in **after** everyone's work is merged. One row per requirement.
 | Requirement ID | From Part 5 | Owner | Test case IDs | Result | GitHub Issue # |
 |---|---|---|---|---|---|
 | REQ-MG-01 *(example)* | CR-3 | Maria | MG-01, MG-02 | 1 Pass, 1 Fail | #12 |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
+| G-KH-01 | New | Karan Hooda | KH-03 | 1 Pass | N/A |
+| REQ-KH-01 | CR-3 | Karan Hooda | KH-01, KH-02 | 1 Pass, 1 Fail | #102 |
+| REQ-KH-02 | CR-1 | Karan Hooda | None | No test linked | N/A |
+| REQ-KH-03 | CR-2 | Karan Hooda | KH-03 | 1 Pass | N/A |
+| NFR-KH-01 | New | Karan Hooda | KH-04 | 1 Pass | N/A |
+| G-NN-01 | New | Nhan Nguyen | NN-01, NN-02 | 1 Pass, 1 Fail | #96 |
+| REQ-NN-01 | CR-1, CR-2 | Nhan Nguyen | NN-01 | 1 Pass | N/A |
+| REQ-NN-02 | CR-4 | Nhan Nguyen | NN-03 | 1 Fail | #97 |
+| REQ-NN-03 | New | Nhan Nguyen | NN-04 | 1 Pass | N/A |
+| NFR-NN-01 | New | Nhan Nguyen | NN-02 | 1 Fail | #96 |
 | | | | | | |
 | | | | | | |
 | | | | | | |
