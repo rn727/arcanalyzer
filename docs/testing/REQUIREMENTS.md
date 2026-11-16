@@ -1,7 +1,7 @@
 # Testable Requirements: [Project Name]
 
-**Team number:** [XX]
-**Inherited from:** Team [XX]
+**Team number:** [2]
+**Inherited from:** Team [1]
 
 ## Who Owns What
 
@@ -54,27 +54,27 @@ RULES
 
 ---
 
-## Section: [Your Area] ([Your Name])
+## Section: Frontend Review Display and Reporting (Nhan Nguyen)
 
 ### Stakeholder Goals
 
 | ID | Stakeholder | Goal |
 |---|---|---|
-| | | |
+| G-NN-01 | Viewer | A viewer should be able to read trustworthy reviews and report inappropriate content for a story arc. |
 
 ### Functional Requirements
 
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
-| | | | |
-| | | | |
-| | | | |
+| REQ-NN-01 | When the backend returns reviews for an arc, the frontend shall display each review's text and rating in the review section. | Confirmed | CR-1 and CR-2, rewritten for the frontend |
+| REQ-NN-02 | When a user enters a non-empty report reason and submits a report, the frontend shall send the reported review and reason to the backend. | Suspected bug | CR-4: The system shall be able to receive a report of a comment. |
+| REQ-NN-03 | When a report reason is empty or contains only spaces, the frontend shall prevent submission and display a message asking the user to provide a reason. | Confirmed | New |
 
 ### Non-Functional Requirements
 
 | ID | Requirement | Status | From Part 5 |
 |---|---|---|---|
-| | | | |
+| NFR-NN-01 | When the review-loading request fails, the frontend shall display a visible error message explaining that the reviews could not be loaded. | Suspected bug | New |
 
 ---
 
