@@ -1,7 +1,7 @@
 # Test Cases: [Nhan N]
 
 **Team number:** [2]
-**My area:** [from REQUIREMENTS.md]
+**My area:** [Frontend Review Display and Reporting]
 
 <!--
 HOW TO USE THIS FILE
