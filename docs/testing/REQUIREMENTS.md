@@ -8,9 +8,9 @@
 
 | Area of the system | Owner | ID prefix |
 |---|---|---|
-| [example: Accounts and login] | [name] | [initials, like MG] |
-| Frontend Review Display and Reporting |Nhan Nguyen | NN |
+| Frontend Review Display and Reporting | Nhan Nguyen | NN |
 | Review Submission and Input Validation | Karan Hooda | KH |
+| Review Reporting and Backend Display | Sidharth Nair | SN |
 | | | |
 
 <!--
