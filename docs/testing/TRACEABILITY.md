@@ -1,7 +1,7 @@
 # Traceability Matrix
 
 **Team number:** [2]
-**Filled in by (captain):** [Nhan, Karan]
+**Filled in by (captain):** [Nhan, Karan, Sidharth, Hamza]
 
 Fill this in **after** everyone's work is merged. One row per requirement.
 
@@ -20,11 +20,16 @@ Fill this in **after** everyone's work is merged. One row per requirement.
 | REQ-NN-02 | CR-4 | Nhan Nguyen | NN-03 | 1 Fail | #97 |
 | REQ-NN-03 | New | Nhan Nguyen | NN-04 | 1 Pass | N/A |
 | NFR-NN-01 | New | Nhan Nguyen | NN-02 | 1 Fail | #96 |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
-| | | | | | |
+| G-HA-01 | New | Hamza Akbari | HA-04 | 1 Pass | N/A |
+| REQ-HA-01 | CR-1 | Hamza Akbari | HA-01 | 1 Pass | N/A |
+| REQ-HA-02 | New | Hamza Akbari | HA-02 | 1 Fail | #12 |
+| REQ-HA-03 | New | Hamza Akbari | HA-03 | 1 Pass | N/A |
+| NFR-HA-01 | New | Hamza Akbari | HA-05 | 1 Pass | N/A |
+| G-SN-01 | New | Sidharth Nair | SN-01, SN-04 | 1 Pass, 1 Fail | #89 |
+| REQ-SN-01 | CR-4 | Sidharth Nair | SN-01 | 1 Fail | #89 |
+| REQ-SN-02 | New | Sidharth Nair | SN-03 | 1 Pass | N/A |
+| REQ-SN-03 | New | Sidharth Nair | SN-04 | 1 Pass | N/A |
+| NFR-SN-01 | New | Sidharth Nair | SN-02 | 1 Pass | N/A |
 
 ## Gaps
 
