@@ -1,4 +1,4 @@
-# Test Cases: [Nhan N]
+# Test Cases: Nhan Nguyen
 
 **Team number:** [2]
 **My area:** [Frontend Review Display and Reporting]
