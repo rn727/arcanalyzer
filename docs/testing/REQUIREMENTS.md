@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+# Testable Requirements: [ArcAnalyzer]
+=======
 # Testable Requirements: ArcAnalyzer
+>>>>>>> 0558e5618335a6e89c8c456f1f214a55e5a89842
 
 **Team number:** [2]
 **Inherited from:** Team [1]
