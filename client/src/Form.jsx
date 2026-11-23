@@ -4,6 +4,7 @@ const Form = () => {
   const [rating, setRating] = useState(null); //changed to null*
   const [showReviewForm, setShowReviewForm] = useState(false);//
   const [comment, setComment] = useState("");//
+  const [submitError, setSubmitError] = useState("");
   const[showReportForm, setShowReportForm] = useState(false);
   const[reportReviewIndex, setReportReviewIndex] = useState(null);// will have each comment have a report next to them
   const[reportReason, setReportReason] = useState("");
@@ -42,32 +43,46 @@ const Form = () => {
 
   //not above 
 
-  async function handleSubmit(event) {
-    event.preventDefault();
+  
+async function handleSubmit(event) {
+  event.preventDefault();
 
-    const params = new URLSearchParams({
-      rating: String(rating),
-      text: comment,
-    });
+  // Clear previous submission errors
+  setSubmitError("");
 
+  const params = new URLSearchParams({
+    rating: String(rating),
+    text: comment,
+  });
+
+  try {
     const response = await fetch(
       "http://127.0.0.1:8000/rate/yourname?" + params.toString(),
-      {method: "POST"}
+      { method: "POST" }
     );
+
+    // Handle a rejected review
     if (!response.ok) {
       console.error("Review submission failed:", response.statusText);
+      setSubmitError("Failed to submit review. Please try again.");
       return;
     }
 
     const data = await response.json();
 
-    console.log(data);
-
+    // Update reviews after successful submission
     setReviews(data.reviews);
     setComment("");
     setRating(null);
     setShowReviewForm(false);
-  };
+
+  } catch (error) {
+    // Handle backend/network failures
+    console.error("Review submission failed:", error);
+    setSubmitError("Failed to submit review. Please try again.");
+  }
+}
+
   //end of fix
   
   //When the form is submmited this will run
@@ -206,6 +221,9 @@ const Form = () => {
     }
     required
     />
+    {submitError && (
+  <p role="alert">{submitError}</p>
+)}
     <button type="submit">Submit Review</button> {/* will be the to submit the review */}
     <button type="button" onClick={() => {
       setShowReviewForm(false);

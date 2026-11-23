@@ -72,6 +72,8 @@ test('keeps the review available when the server rejects it', async () => {
   expect(screen.getByLabelText('write here').value).toBe('Keep this text')
   expect(screen.getByLabelText('Rating (0-10)').value).toBe('4')
   expect(screen.queryByText('Keep this text', { selector: 'p' })).toBeNull()
+  expect((await screen.findByRole('alert')).textContent)
+  .toBe('Failed to submit review. Please try again.')
 })
 
 test('review textarea has a 500-character limit', async () => {
@@ -128,4 +130,47 @@ test('displays the arc name returned by the backend', async () => {
       name: 'Your Name',
     })
   ).toBeTruthy()
+})
+
+
+test('shows an error when the backend cannot be reached during submission', async () => {
+  const fetchMock = vi.fn()
+    .mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ reviews: [] })
+    })
+    .mockRejectedValueOnce(new Error('Network unavailable'))
+
+  vi.stubGlobal('fetch', fetchMock)
+  vi.spyOn(console, 'error').mockImplementation(() => {})
+
+  const user = userEvent.setup()
+  render(<Form />)
+
+  await user.click(
+    screen.getByRole('button', { name: 'Create a Review' })
+  )
+
+  await user.type(
+    screen.getByLabelText('write here'),
+    'My review'
+  )
+
+  await user.type(
+    screen.getByLabelText('Rating (0-10)'),
+    '5'
+  )
+
+  await user.click(
+    screen.getByRole('button', { name: 'Submit Review' })
+  )
+
+  expect((await screen.findByRole('alert')).textContent)
+    .toBe('Failed to submit review. Please try again.')
+
+  expect(screen.getByLabelText('write here').value)
+    .toBe('My review')
+
+  expect(screen.getByLabelText('Rating (0-10)').value)
+    .toBe('5')
 })
