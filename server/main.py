@@ -64,6 +64,12 @@ async def addRating(arc_name: str, rating: int = 10, text: str = ""):
     if key not in db_arcs:
         raise HTTPException(status_code=404, detail="Arc not found")
 
+    if rating < 0 or rating > 10:
+        raise HTTPException(
+            status_code=422,
+            detail="Rating must be between 0 and 10",
+        )
+
     arc = db_arcs[key]
 
     #update average rating
