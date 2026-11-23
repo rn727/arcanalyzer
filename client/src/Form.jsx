@@ -9,7 +9,7 @@ const Form = () => {
   const[reportReason, setReportReason] = useState("");
   const[reportMessage, setReportMessage] = useState("");
   const[reviews, setReviews] = useState([]);
- 
+  const [loadError, setLoadError] = useState("");
   const selectedSeason = {episodeStart: 1, episodeEnd: 12};// not set just example
   useEffect(() => {
     //This will ask the backend for the reviews and show them on the page
@@ -20,6 +20,7 @@ const Form = () => {
         //This will stop if the back end gets an error
         if (!response.ok) {
           console.error("Was not able to load reviews:", response.statusText);
+          const [loadError, setLoadError] = useState("");
           return;
         }
         //Will help convert the backend into an something that can be displayed
@@ -29,6 +30,7 @@ const Form = () => {
       } catch (error) {
         //this will run if the backend is not reached
         console.error("Not able to reach the backend:", error);
+        setLoadError("We could not load the reviews.");
       }
       }
       //runs the function to load reviews
@@ -93,6 +95,8 @@ const Form = () => {
       <h3>
       Episodes in Arc {selectedSeason.episodeStart} - {selectedSeason.episodeEnd}
       </h3>
+
+      {loadError && <p role="alert">{loadError}</p>}
 
       {/* Groups of the episdoe ranges in the seasons. */}
       <article> 

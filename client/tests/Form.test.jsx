@@ -93,3 +93,18 @@ test('review textarea has a 500-character limit', async () => {
 
   expect(textarea.maxLength).toBe(500)
 })
+
+test('shows an error when reviews cannot load', async () => {
+  const fetchMock = vi.fn().mockResolvedValue({
+    ok: false,
+    statusText: 'Backend unavailable',
+  })
+
+  vi.stubGlobal('fetch', fetchMock)
+
+  render(<Form />)
+
+  expect(
+    (await screen.findByRole('alert')).textContent
+  ).toMatch(/could not load the reviews/i)
+})
