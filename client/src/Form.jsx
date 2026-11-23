@@ -20,6 +20,7 @@ const Form = () => {
         //This will stop if the back end gets an error
         if (!response.ok) {
           console.error("Was not able to load reviews:", response.statusText);
+          setLoadError("We could not load the reviews.");
           return;
         }
         //Will help convert the backend into an something that can be displayed
