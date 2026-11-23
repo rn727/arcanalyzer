@@ -148,20 +148,24 @@ async function handleSubmit(event) {
           onChange={(event) => setReportReason(event.target.value)}
          />
          {/* this will display a message that the report has been submitted */}
-         <button
+          <button
          type="button"
-         onClick={() => {
-          if (reportReason.trim()){
+         onClick={async () => {
+          if (reportReason.trim()) {
+            await fetch(
+              `http://127.0.0.1:8000/report/yourname?review_index=${reportReviewIndex}&details=${reportReason}`,
+              { method: "POST" }
+            );
+
             setReportMessage("Report has been submitted.");
             setReportReason("");
             setShowReportForm(false);
-          }else{
+          } else {
             setReportMessage("please give a reason why it is inappropriate");
           }
         }}
          >
-          {/* allows to cancel the report */}
-         Submit Report
+          Submit Report
          </button>
          <button
           type="button"

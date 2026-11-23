@@ -174,3 +174,36 @@ test('shows an error when the backend cannot be reached during submission', asyn
   expect(screen.getByLabelText('Rating (0-10)').value)
     .toBe('5')
 })
+
+// 115 test 
+test('sends report to backend', async () => {
+  const fetchMock = vi.fn()
+    .mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        reviews: [{ rating: 10, text: 'unbelievable.' }]
+      })
+    })
+
+  vi.stubGlobal('fetch', fetchMock)
+
+  const user = userEvent.setup()
+  render(<Form />)
+
+  await screen.findByText('unbelievable.')
+
+  await user.click(
+    screen.getByRole('button', { name: 'Report' })
+  )
+
+  await user.type(
+    screen.getByLabelText('What is the reason for this report?'),
+    'Inappropriate content'
+  )
+
+  await user.click(
+    screen.getByRole('button', { name: 'Submit Report' })
+  )
+
+  expect(fetchMock).toHaveBeenCalledTimes(2)
+})
