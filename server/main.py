@@ -43,6 +43,8 @@ if os.path.exists('arcdb.pkl'):
 else:
     db_arcs = default_db_arcs
 
+db_reports = []
+
 def save_db():
     with open('arcdb.pkl', "wb") as f:
         pickle.dump(db_arcs, f)
@@ -86,4 +88,31 @@ async def addRating(arc_name: str, rating: int = 10, text: str = ""):
     arc.reviews.append(Review(rating=rating, text=text))
     save_db()
     return arc
+
+## 89 report func
+@app.post(PATH_PREFIX + "/report/{arc_name}")
+async def submitReport(arc_name: str, review_index: int, details: str):
+    key = arc_name.lower()
+
+    if key not in db_arcs:
+        raise HTTPException(status_code=404, detail="Arc not found")
+
+    arc = db_arcs[key]
+
+    if review_index < 0 or review_index >= len(arc.reviews):
+        raise HTTPException(status_code=404, detail="Review not found")
+
+    if not details.strip():
+        raise HTTPException(status_code=422, detail="Report details cannot be empty")
+
+    report = {
+        "arc": key,
+        "review_index": review_index,
+        "review": arc.reviews[review_index],
+        "details": details
+    }
+
+    db_reports.append(report)
+
+    return report
 
