@@ -108,3 +108,24 @@ test('shows an error when reviews cannot load', async () => {
     (await screen.findByRole('alert')).textContent
   ).toMatch(/could not load the reviews/i)
 })
+
+test('displays the arc name returned by the backend', async () => {
+  const fetchMock = vi.fn().mockResolvedValue({
+    ok: true,
+    json: async () => ({
+      name: 'Your Name',
+      reviews: [],
+    }),
+  })
+
+  vi.stubGlobal('fetch', fetchMock)
+
+  render(<Form />)
+
+  expect(
+    await screen.findByRole('heading', {
+      level: 2,
+      name: 'Your Name',
+    })
+  ).toBeTruthy()
+})
