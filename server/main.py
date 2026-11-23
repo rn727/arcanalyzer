@@ -70,6 +70,12 @@ async def addRating(arc_name: str, rating: int = 10, text: str = ""):
             detail="Rating must be between 0 and 10",
         )
 
+    if text and not text.strip():
+        raise HTTPException(
+            status_code=422,
+            detail="Review text cannot be blank",
+        )
+
     arc = db_arcs[key]
 
     #update average rating
