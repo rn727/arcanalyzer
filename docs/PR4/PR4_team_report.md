@@ -4,7 +4,6 @@
 
 **Team members:** Hamza Akbari, Karan Hooda, Nhan Nguyen, Sidharth Nair
 
-## 1. Bug Triage Table
 
 ## 1. Bug Triage Table
 
@@ -30,8 +29,6 @@ No regressions found.
 ![Final Test Run](screenshots/final_test_run.png)
 
 **Remaining failing tests:** None. All frontend and backend tests passed successfully.
-
-## 4. Feature Decision
 
 ## 4. Feature Decision
 
