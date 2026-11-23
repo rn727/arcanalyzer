@@ -61,13 +61,14 @@ async def getArc(arc_name: str):
 @app.post(PATH_PREFIX+"/rate/{arc_name}")
 async def addRating(arc_name: str, rating: int = 10, text: str = ""):
     key = arc_name.lower()
+
     if key not in db_arcs:
         raise HTTPException(status_code=404, detail="Arc not found")
 
-    if rating < 0 or rating > 10:
+    if len(text) > 500:
         raise HTTPException(
-            status_code=422,
-            detail="Rating must be between 0 and 10",
+        status_code=422,
+        detail="Review cannot exceed 500 characters"
         )
 
     arc = db_arcs[key]

@@ -43,3 +43,29 @@ def test_add_rating_unknown_arc_404():
 
 def test_add_rating_rejects_non_int():
     assert client.post("/rate/yourname", params={"rating": "abc"}).status_code == 422
+
+
+
+def test_rejects_review_over_500_characters():
+    arc = main.db_arcs["yourname"]
+    original_count = len(arc.reviews)
+    original_average = arc.avgRating
+
+    response = client.post(
+        "/rate/yourname",
+        params={"rating": 5, "text": "a" * 501}
+    )
+
+    assert response.status_code == 422
+    assert len(arc.reviews) == original_count
+    assert arc.avgRating == original_average
+
+
+def test_accepts_review_of_exactly_500_characters():
+    response = client.post(
+        "/rate/yourname",
+        params={"rating": 5, "text": "a" * 500}
+    )
+
+    assert response.status_code == 200
+    assert response.json()["reviews"][-1]["text"] == "a" * 500

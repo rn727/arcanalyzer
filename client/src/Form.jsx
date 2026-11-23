@@ -179,6 +179,7 @@ const Form = () => {
       <label htmlFor="review-comment">write here</label>
       <textarea
       id="review-comment"
+      maxLength={500}
       value={comment}
       onChange={(event) => setComment(event.target.value)}
       required

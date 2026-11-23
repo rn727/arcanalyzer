@@ -73,3 +73,23 @@ test('keeps the review available when the server rejects it', async () => {
   expect(screen.getByLabelText('Rating (0-10)').value).toBe('4')
   expect(screen.queryByText('Keep this text', { selector: 'p' })).toBeNull()
 })
+
+test('review textarea has a 500-character limit', async () => {
+  const fetchMock = vi.fn().mockResolvedValue({
+    ok: true,
+    json: async () => ({ reviews: [] })
+  })
+
+  vi.stubGlobal('fetch', fetchMock)
+
+  const user = userEvent.setup()
+  render(<Form />)
+
+  await user.click(
+    screen.getByRole('button', { name: 'Create a Review' })
+  )
+
+  const textarea = screen.getByLabelText('write here')
+
+  expect(textarea.maxLength).toBe(500)
+})
