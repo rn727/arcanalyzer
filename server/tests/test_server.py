@@ -69,3 +69,15 @@ def test_accepts_review_of_exactly_500_characters():
 
     assert response.status_code == 200
     assert response.json()["reviews"][-1]["text"] == "a" * 500
+
+def test_report_endpoint_exists():
+    response = client.post(
+        "/report/yourname",
+        params={
+            "review_index": 0,
+            "details": "Inappropriate content"
+        }
+    )
+    assert response.status_code == 200
+
+    
